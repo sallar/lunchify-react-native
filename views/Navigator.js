@@ -1,9 +1,12 @@
+/**
+ * @author Sallar Kaboli <sallar.kaboli@gmail.com>
+ * @date 27.05.2015
+ */
 'use strict';
 
-var React      = require('react-native');
-var Router     = require('react-native-router');
-var Styles     = require('./app.styles');
-var {Stylesheet, Variables} = require('./app.styles');
+var React      = require('react-native'),
+    Router     = require('react-native-router'),
+    {Stylesheet, Variables} = require('../utils/Styles');
 
 var {
     StyleSheet,
