@@ -13,7 +13,6 @@ var React    = require('react-native'),
     Loading  = require('./../components/Loading'),
     Helpers  = require('../utils/Helpers'),
     RCTRefreshControl = require('RCTRefreshControl'),
-    baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id}),
     {Stylesheet, VenuesStyles, ListStyles, IndicatorStyles} = require('../utils/Styles'),
     LISTVIEW = 'ListView';
 
@@ -25,6 +24,8 @@ var {
     ListView,
     TouchableHighlight,
     } = React;
+
+var baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id});
 
 /**
  * Venues View
