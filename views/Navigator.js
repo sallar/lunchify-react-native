@@ -6,7 +6,7 @@
 
 var React      = require('react-native'),
     Router     = require('react-native-router'),
-    {Stylesheet, Variables} = require('../utils/Styles');
+    {Stylesheet, NavigatorStyle} = require('../utils/Styles');
 
 var {
     StyleSheet,
@@ -23,11 +23,11 @@ class Navigator extends Component {
         super(props);
     }
 
-    returnTitle(title: string) {
+    renderTitle(title: string) {
         return React.createClass({
             render: function() {
                 return(
-                    <Text style={[Stylesheet.text, Stylesheet.navbarText]}>{title}</Text>
+                    <Text style={[Stylesheet.text, NavigatorStyle.navbarText]}>{title}</Text>
                 );
             }
         });
@@ -38,24 +38,14 @@ class Navigator extends Component {
             <Router
                 firstRoute={{
                     name: this.props.title,
-                    component: this.props.component
+                    component: this.props.component,
+                    titleComponent: this.renderTitle(this.props.title)
                 }}
-                headerStyle={Stylesheet.headerStyle}
+                headerStyle={NavigatorStyle.header}
+                bgStyle={NavigatorStyle.scene}
                 />
         );
     }
 }
-
-/**
- * Styles
- */
-var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    header: {
-        backgroundColor: '#1D4E89'
-    }
-});
 
 module.exports = Navigator;

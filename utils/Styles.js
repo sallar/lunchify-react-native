@@ -25,6 +25,27 @@ module.exports = {
         margin: {
             marginBottom: 10,
         },
+        white: {
+            backgroundColor: 'white'
+        },
+        textContainer: {
+            flex: 1,
+            backgroundColor: 'white',
+        },
+    }),
+    /**
+     * Navigator
+     */
+    NavigatorStyle: StyleSheet.create({
+        container: {
+            flex: 1,
+        },
+        header: {
+            backgroundColor: variables.brandColor
+        },
+        scene: {
+            backgroundColor: '#E6E9ED'
+        },
         navbarText: {
             color: 'white',
             fontSize: 17,
@@ -33,17 +54,7 @@ module.exports = {
             fontWeight: '600',
             textAlign: 'center',
             alignItems: 'center',
-        },
-        headerStyle: {
-            backgroundColor: variables.brandColor
-        },
-        white: {
-            backgroundColor: 'white'
-        },
-        textContainer: {
-            flex: 1,
-            backgroundColor: 'white',
-        },
+        }
     }),
     /**
      * Venues
@@ -127,16 +138,27 @@ module.exports = {
         badge: {
             margin: 0,
             padding: 0,
-            backgroundColor: '#dddddd',
-            borderColor: '#dddddd',
+            backgroundColor: '#E6E9ED',
+            borderColor: '#E6E9ED',
             borderRadius: 10,
             borderWidth: 4,
         },
         badgeText: {
             margin: 0,
-            padding: 0,
+            paddingLeft: 3,
+            paddingRight: 3,
             fontSize: 9,
-            backgroundColor: '#dddddd',
+            backgroundColor: '#E6E9ED',
+        },
+    }),
+    /**
+     * Indicator
+     */
+    IndicatorStyles: StyleSheet.create({
+        wrapper: {
+            backgroundColor: '#ffffff',
+            height: 60,
+            marginTop: 10,
         },
     })
 };

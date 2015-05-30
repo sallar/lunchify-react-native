@@ -11,7 +11,11 @@ window.navigator.userAgent = "react-native";
 var React    = require('react-native'),
     firebase = require('./../firebase-debug'),
     Loading  = require('./../components/Loading'),
-    {Stylesheet, VenuesStyles, ListStyles} = require('../utils/Styles');
+    Helpers  = require('../utils/Helpers'),
+    RCTRefreshControl = require('RCTRefreshControl'),
+    baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id}),
+    {Stylesheet, VenuesStyles, ListStyles, IndicatorStyles} = require('../utils/Styles'),
+    LISTVIEW = 'ListView';
 
 var {
     StyleSheet,
@@ -21,9 +25,6 @@ var {
     ListView,
     TouchableHighlight,
     } = React;
-
-var RefreshableListView = require('react-native-refreshable-listview');
-var baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id});
 
 /**
  * Venues View
@@ -37,13 +38,75 @@ class VenuesView extends Component {
     }
 
     componentDidMount() {
-        var ref = new Firebase("https://lunchify.firebaseio.com/areas/keilaniemi/venues");
-        ref.on("value",function(snapshot){
-            //this.setState(snapshot.val())
-            this.setState({
-                dataSource: baseDataSource.cloneWithRows(snapshot.val())
+        var ref = new Firebase("https://lunchify.firebaseio.com/areas/keilaniemi/venues"),
+            watchID = null;
+
+        // Geolocation & Data
+        navigator.geolocation.getCurrentPosition(
+            function(initialPosition) {
+                ref.on("value",function(snapshot) {
+                    // Calc Distances
+                    var venues = this.calcDistances(snapshot, initialPosition);
+
+                    // Set State
+                    this.setState({
+                        venues: snapshot,
+                        dataSource: baseDataSource.cloneWithRows(venues),
+                        initialPosition: initialPosition
+                    });
+                }.bind(this));
+            }.bind(this),
+            function(error) {
+                console.error(error);
+            }
+        );
+
+        // ScrollView
+        RCTRefreshControl.configure({
+            node: this.refs[LISTVIEW]
+        }, () => {
+            this.recalcDistance();
+        });
+    }
+
+    calcDistances(data, geo) {
+        var venues = [];
+
+        // Calc Distances
+        data.forEach(function(item) {
+            var item = item.val();
+            item.distance = Helpers.calcDistance({
+                lat: geo.coords.latitude,
+                lng: geo.coords.longitude
+            }, {
+                lat: item.lat,
+                lng: item.lng
             });
-        }.bind(this))
+            venues.push(item);
+        });
+
+        // Closest first
+        venues.sort(function(a, b) {
+            return a.distance - b.distance;
+        });
+
+        return venues;
+    }
+
+    recalcDistance() {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                setTimeout(function() {
+                    this.setState({
+                        dataSource: baseDataSource.cloneWithRows(
+                            this.calcDistances(this.state.venues, position)
+                        ),
+                        lastPosition: position
+                    });
+                    RCTRefreshControl.endRefreshing(this.refs[LISTVIEW]);
+                }.bind(this), 500);
+            }.bind(this)
+        );
     }
 
     renderVenue(venue) {
@@ -55,19 +118,13 @@ class VenuesView extends Component {
     }
 
     render() {
-        if (this.state.dataSource.getRowCount() === 0) {
-            return (
-                <Loading>Venues</Loading>
-            )
-        } else {
-            return (
-                <RefreshableListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderVenue}
-                    refreshDescription="Refreshing top stories"
-                    />
-            )
-        }
+        return (
+            <ListView
+                ref={LISTVIEW}
+                dataSource={this.state.dataSource}
+                renderRow={this.renderVenue}
+                />
+        )
     }
 }
 
@@ -86,10 +143,10 @@ class VenuesItemView extends Component{
     renderByline(venue) {
         return (
             <View style={[ListStyles.row, ListStyles.byline]}>
-                <Badge>0 points</Badge>
+                <Badge>{Helpers.formatDistance(venue.distance)}</Badge>
                 <View>
-                    <Text style={ListStyles.infoAddress} numberOfLines={1}>
-                        {' '}{venue.address}
+                    <Text style={[Stylesheet.text, ListStyles.infoAddress]} numberOfLines={1}>
+                        {' '} {venue.address}
                     </Text>
                 </View>
             </View>
@@ -130,7 +187,7 @@ class Badge extends Component {
     render() {
         return (
             <View style={ListStyles.badge}>
-                <Text style={ListStyles.badgeText} children={this.props.children} />
+                <Text style={[Stylesheet.text, ListStyles.badgeText]} children={this.props.children} />
             </View>
         )
     }

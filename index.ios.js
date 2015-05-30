@@ -20,7 +20,6 @@ var {
  * Main App
  */
 class Lunchify extends Component {
-
     render() {
         return(
             <Navigator
