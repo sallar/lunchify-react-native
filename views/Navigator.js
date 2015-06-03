@@ -4,8 +4,12 @@
  */
 'use strict';
 
-var React      = require('react-native'),
-    Router     = require('react-native-router'),
+var React  = require('react-native'),
+    Router = require('react-native-router'),
+    Icon   = require('MaterialDesign'),
+    Title  = require('./Title'),
+    AboutView = require('./About'),
+    BackButtonView = require('./BackButton'),
     {Stylesheet, NavigatorStyle} = require('../utils/Styles');
 
 var {
@@ -13,6 +17,8 @@ var {
     Component,
     NavigatorIOS,
     Text,
+    TouchableHighlight,
+    View,
     } = React;
 
 /**
@@ -33,16 +39,40 @@ class Navigator extends Component {
         });
     }
 
+    renderAboutButton() {
+        return React.createClass({
+            aboutScreen() {
+                this.props.toRoute({
+                    name: 'About Lunchify',
+                    component: AboutView,
+                    titleComponent: Title
+                })
+            },
+
+            render: function() {
+                return(
+                    <TouchableHighlight underlayColor="transparent" onPress={this.aboutScreen}>
+                        <View>
+                            <Icon name="info-outline" size={24} style={NavigatorStyle.icon} />
+                        </View>
+                    </TouchableHighlight>
+                );
+            }
+        });
+    }
+
     render() {
         return(
             <Router
                 firstRoute={{
                     name: this.props.title,
                     component: this.props.component,
-                    titleComponent: this.renderTitle(this.props.title)
+                    titleComponent: Title,
+                    leftCorner: this.renderAboutButton()
                 }}
                 headerStyle={NavigatorStyle.header}
                 bgStyle={NavigatorStyle.scene}
+                backButtonComponent={BackButtonView}
                 />
         );
     }

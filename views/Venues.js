@@ -8,13 +8,20 @@ window.navigator.userAgent = "react-native";
 /**
  * Required Modules
  */
-var React    = require('react-native'),
-    firebase = require('./../firebase-debug'),
-    Loading  = require('./../components/Loading'),
-    Helpers  = require('../utils/Helpers'),
+var React     = require('react-native'),
+    Loading   = require('./../components/Loading'),
+    Helpers   = require('../utils/Helpers'),
+    VenueView = require('./Venue'),
+    TitleView = require('./Title'),
+    Icon      = require('MaterialDesign'),
     RCTRefreshControl = require('RCTRefreshControl'),
     {Stylesheet, VenuesStyles, ListStyles, IndicatorStyles} = require('../utils/Styles'),
-    LISTVIEW = 'ListView';
+    LISTVIEW  = 'ListView',
+    GPSOptions = {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 1000
+    };
 
 var {
     StyleSheet,
@@ -39,26 +46,28 @@ class VenuesView extends Component {
     }
 
     componentDidMount() {
-        var ref = new Firebase("https://lunchify.firebaseio.com/areas/keilaniemi/venues"),
-            watchID = null;
+        var ref = fetch('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
+            _this = this;
 
         // Geolocation & Data
         navigator.geolocation.getCurrentPosition(
-            function(initialPosition) {
-                ref.on("value",function(snapshot) {
-                    // Calc Distances
-                    var venues = this.calcDistances(snapshot, initialPosition);
+            (initialPosition) => {
+                ref
+                    .then((response) => response.json())
+                    .then((response) => {
+                        // Calc Distances
+                        var venues = _this.calcDistances(response, initialPosition);
 
-                    // Set State
-                    this.setState({
-                        venues: snapshot,
-                        dataSource: baseDataSource.cloneWithRows(venues),
-                        initialPosition: initialPosition
+                        // Set State
+                        _this.setState({
+                            venues: venues,
+                            dataSource: baseDataSource.cloneWithRows(venues),
+                            initialPosition: initialPosition
+                        });
+                    })
+                    .catch((error) => {
+                        console.warn(error);
                     });
-                }.bind(this));
-            }.bind(this),
-            function(error) {
-                console.error(error);
             }
         );
 
@@ -74,8 +83,8 @@ class VenuesView extends Component {
         var venues = [];
 
         // Calc Distances
-        data.forEach(function(item) {
-            var item = item.val();
+        for(var item in data) {
+            var item = data[item];
             item.distance = Helpers.calcDistance({
                 lat: geo.coords.latitude,
                 lng: geo.coords.longitude
@@ -84,10 +93,10 @@ class VenuesView extends Component {
                 lng: item.lng
             });
             venues.push(item);
-        });
+        };
 
         // Closest first
-        venues.sort(function(a, b) {
+        venues.sort((a, b) => {
             return a.distance - b.distance;
         });
 
@@ -95,24 +104,35 @@ class VenuesView extends Component {
     }
 
     recalcDistance() {
+        var _this = this;
+
         navigator.geolocation.getCurrentPosition(
-            function(position) {
-                setTimeout(function() {
-                    this.setState({
+            (position) => {
+                setTimeout(() => {
+                    _this.setState({
                         dataSource: baseDataSource.cloneWithRows(
-                            this.calcDistances(this.state.venues, position)
+                            _this.calcDistances(_this.state.venues, position)
                         ),
                         lastPosition: position
                     });
-                    RCTRefreshControl.endRefreshing(this.refs[LISTVIEW]);
-                }.bind(this), 500);
-            }.bind(this)
+                    RCTRefreshControl.endRefreshing(_this.refs[LISTVIEW]);
+                }, 500);
+            }
         );
+    }
+
+    toVenue() {
+        this.props.toRoute({
+            name: 'Venue',
+            component: VenueView,
+            titleComponent: TitleView
+        })
     }
 
     renderVenue(venue) {
         return (
             <VenuesItemView
+                onPress={this.toVenue.bind(this)}
                 venue={venue}
                 />
         )
@@ -123,7 +143,7 @@ class VenuesView extends Component {
             <ListView
                 ref={LISTVIEW}
                 dataSource={this.state.dataSource}
-                renderRow={this.renderVenue}
+                renderRow={this.renderVenue.bind(this)}
                 />
         )
     }
@@ -158,23 +178,32 @@ class VenuesItemView extends Component{
         var {venue} = this.props
 
         return (
-            <View style={Stylesheet.textContainer}>
-                <TouchableHighlight onPress={() => console.log('fuck')}>
-                    <View style={ListStyles.infoCell}>
-                        {this.renderTitle(venue)}
-                        {this.renderByline(venue)}
-                    </View>
-                </TouchableHighlight>
+            <View style={[Stylesheet.flex, Stylesheet.white]}>
+                <View style={ListStyles.infoCell}>
+                    {this.renderTitle(venue)}
+                    {this.renderByline(venue)}
+                </View>
             </View>
         )
+    }
+
+    renderArrow() {
+        return (
+            <View style={[Stylesheet.flex_20, Stylesheet.flexCenter, Stylesheet.white]}>
+                <Icon name="keyboard-arrow-right" size={30} style={ListStyles.arrow}></Icon>
+            </View>
+        );
     }
 
     render() {
         return (
             <View style={Stylesheet.white}>
-                <View style={[ListStyles.row, ListStyles.itemRow]}>
-                    {this.renderInfo()}
-                </View>
+                <TouchableHighlight underlayColor="transparent" onPress={this.props.onPress}>
+                    <View style={[ListStyles.row, ListStyles.itemRow]}>
+                        {this.renderInfo()}
+                        {this.renderArrow()}
+                    </View>
+                </TouchableHighlight>
                 <View style={ListStyles.cellBorder} />
             </View>
         )
@@ -188,6 +217,7 @@ class Badge extends Component {
     render() {
         return (
             <View style={ListStyles.badge}>
+                <Icon name="location-on" size={10} style={ListStyles.badgeIcon} />
                 <Text style={[Stylesheet.text, ListStyles.badgeText]} children={this.props.children} />
             </View>
         )

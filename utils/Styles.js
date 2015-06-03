@@ -7,7 +7,8 @@
 var {StyleSheet, PixelRatio} = require('react-native'),
     variables    = {
         brandColor: '#ED5565',
-        cellPadding: 8
+        cellPaddingHorizontal: 15,
+        cellPaddingVertical: 10
     };
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
      */
     Stylesheet: StyleSheet.create({
         text: {
-            fontFamily: 'Avenir',
+            fontFamily: 'Lato',
         },
         margin: {
             marginBottom: 10,
@@ -32,6 +33,16 @@ module.exports = {
             flex: 1,
             backgroundColor: 'white',
         },
+        flex: {
+            flex: 1,
+        },
+        flex_20: {
+            flex: .2
+        },
+        flexCenter: {
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
     }),
     /**
      * Navigator
@@ -48,12 +59,25 @@ module.exports = {
         },
         navbarText: {
             color: 'white',
-            fontSize: 17,
+            fontSize: 18,
             margin: 10,
             marginTop: 15,
-            fontWeight: '600',
+            fontWeight: 'bold',
             textAlign: 'center',
             alignItems: 'center',
+        },
+        backButtonText: {
+            fontWeight: '400'
+        },
+        icon: {
+            marginLeft: 8,
+            marginTop: 6,
+            width: 24,
+            height: 24,
+            color: 'white'
+        },
+        navbarLogo: {
+            top: 3
         }
     }),
     /**
@@ -111,7 +135,8 @@ module.exports = {
         cellBorder: {
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
             height: 1 / PixelRatio.get(),
-            marginLeft: 4,
+            marginLeft: 5,
+            marginRight: 5,
         },
         infoCell: {
             flex: 1,
@@ -119,37 +144,69 @@ module.exports = {
             flexWrap: 'nowrap',
             justifyContent: 'space-around',
             alignItems: 'stretch',
-            padding: variables.cellPadding,
+            paddingHorizontal: variables.cellPaddingHorizontal,
+            paddingVertical: variables.cellPaddingVertical,
+        },
+        arrow: {
+            color: '#CCCCCC'
         },
         infoTitle: {
-            height: 30,
+            height: 28,
             fontSize: 18,
-            fontWeight: '700',
-            marginBottom: 2,
-            fontFamily: 'Avenir'
+            fontWeight: '600',
+            marginBottom: 0,
+            fontFamily: 'Lato'
         },
         infoAddress: {
             color: '#999999',
             fontSize: 13,
+            fontWeight: '300'
         },
         byline: {
             padding: 0,
         },
         badge: {
             margin: 0,
-            padding: 0,
+            paddingLeft: 3,
+            paddingRight: 3,
             backgroundColor: '#E6E9ED',
             borderColor: '#E6E9ED',
             borderRadius: 10,
             borderWidth: 4,
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         badgeText: {
             margin: 0,
-            paddingLeft: 3,
-            paddingRight: 3,
+            padding: 0,
             fontSize: 9,
             backgroundColor: '#E6E9ED',
+            flex: 1,
+            fontWeight: 'bold'
         },
+        badgeIcon: {
+            marginRight: 2,
+            color: '#666666'
+        }
+    }),
+    /**
+     * Venue View
+     */
+    VenueStyles: StyleSheet.create({
+        header: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            padding: variables.cellPaddingHorizontal
+        },
+        headerText: {
+            color: 'white',
+            fontSize: 30,
+            fontWeight: 'bold',
+            shadowColor: '#222',
+            shadowOpacity: 0.3,
+            shadowRadius: 1,
+        }
     }),
     /**
      * Indicator
