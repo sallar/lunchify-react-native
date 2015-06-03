@@ -28,10 +28,10 @@
 		999F82F11B1E33F900928094 /* VibrancyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EA1B1E33F900928094 /* VibrancyViewManager.m */; };
 		999F82F21B1E33F900928094 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82ED1B1E33F900928094 /* BlurView.m */; };
 		999F82F31B1E33F900928094 /* BlurViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EF1B1E33F900928094 /* BlurViewManager.m */; };
-		999F83051B1F6F1B00928094 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83021B1F6F1B00928094 /* Lato-Bold.ttf */; };
-		999F83061B1F6F1B00928094 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83031B1F6F1B00928094 /* Lato-Light.ttf */; };
-		999F83071B1F6F1B00928094 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83041B1F6F1B00928094 /* Lato-Regular.ttf */; };
-		999F83091B1F7CCA00928094 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83081B1F7CCA00928094 /* Lato-Semibold.ttf */; };
+		999F830F1B1F812400928094 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830B1B1F812400928094 /* Lato-Bold.ttf */; };
+		999F83101B1F812400928094 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830C1B1F812400928094 /* Lato-Light.ttf */; };
+		999F83111B1F812400928094 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830D1B1F812400928094 /* Lato-Regular.ttf */; };
+		999F83121B1F812400928094 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830E1B1F812400928094 /* Lato-Semibold.ttf */; };
 		99C6E2E71B19B9CD00384371 /* libRCTRefreshControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C6E2E61B19B9B900384371 /* libRCTRefreshControl.a */; };
 		99F2A11D1B1B9B2D00B32ACD /* MaterialDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */; };
 /* End PBXBuildFile section */
@@ -161,10 +161,10 @@
 		999F82ED1B1E33F900928094 /* BlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurView.m; sourceTree = "<group>"; };
 		999F82EE1B1E33F900928094 /* BlurViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurViewManager.h; sourceTree = "<group>"; };
 		999F82EF1B1E33F900928094 /* BlurViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurViewManager.m; sourceTree = "<group>"; };
-		999F83021B1F6F1B00928094 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
-		999F83031B1F6F1B00928094 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
-		999F83041B1F6F1B00928094 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		999F83081B1F7CCA00928094 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
+		999F830B1B1F812400928094 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		999F830C1B1F812400928094 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
+		999F830D1B1F812400928094 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		999F830E1B1F812400928094 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Semibold.ttf"; path = "fonts/Lato-Semibold.ttf"; sourceTree = "<group>"; };
 		99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTRefreshControl.xcodeproj; path = vendor/RCTRefreshControl/RCTRefreshControl.xcodeproj; sourceTree = "<group>"; };
 		99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialDesign.ttf; path = "node_modules/react-native-vector-icons/Fonts/MaterialDesign.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -388,10 +388,10 @@
 		999F830A1B1F808900928094 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				999F83081B1F7CCA00928094 /* Lato-Semibold.ttf */,
-				999F83021B1F6F1B00928094 /* Lato-Bold.ttf */,
-				999F83031B1F6F1B00928094 /* Lato-Light.ttf */,
-				999F83041B1F6F1B00928094 /* Lato-Regular.ttf */,
+				999F830B1B1F812400928094 /* Lato-Bold.ttf */,
+				999F830C1B1F812400928094 /* Lato-Light.ttf */,
+				999F830D1B1F812400928094 /* Lato-Regular.ttf */,
+				999F830E1B1F812400928094 /* Lato-Semibold.ttf */,
 				99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */,
 			);
 			name = Fonts;
@@ -627,13 +627,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
-				999F83051B1F6F1B00928094 /* Lato-Bold.ttf in Resources */,
-				999F83091B1F7CCA00928094 /* Lato-Semibold.ttf in Resources */,
-				999F83071B1F6F1B00928094 /* Lato-Regular.ttf in Resources */,
+				999F83121B1F812400928094 /* Lato-Semibold.ttf in Resources */,
+				999F830F1B1F812400928094 /* Lato-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				999F83101B1F812400928094 /* Lato-Light.ttf in Resources */,
+				999F83111B1F812400928094 /* Lato-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				99F2A11D1B1B9B2D00B32ACD /* MaterialDesign.ttf in Resources */,
-				999F83061B1F6F1B00928094 /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
