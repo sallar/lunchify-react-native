@@ -46,30 +46,29 @@ class VenuesView extends Component {
     }
 
     componentDidMount() {
-        var ref = fetch('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
+        var resolution,
+            refPromise = fetch('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
+            geoPromise = new Promise(function(resolve) {
+                resolution = resolve;
+            }),
             _this = this;
 
-        // Geolocation & Data
-        navigator.geolocation.getCurrentPosition(
-            (initialPosition) => {
-                ref
-                    .then((response) => response.json())
-                    .then((response) => {
-                        // Calc Distances
-                        var venues = _this.calcDistances(response, initialPosition);
+        Promise.all([refPromise, geoPromise]).then(([response, initialPosition]) => {
+            response.json().then((response) => {
+                // Calc Distances
+                var venues = _this.calcDistances(response, initialPosition);
 
-                        // Set State
-                        _this.setState({
-                            venues: venues,
-                            dataSource: baseDataSource.cloneWithRows(venues),
-                            initialPosition: initialPosition
-                        });
-                    })
-                    .catch((error) => {
-                        console.warn(error);
-                    });
-            }
-        );
+                // Set State
+                _this.setState({
+                    venues: venues,
+                    dataSource: baseDataSource.cloneWithRows(venues),
+                    initialPosition: initialPosition
+                });
+            });
+        });
+
+        // Call Geo location
+        navigator.geolocation.getCurrentPosition(resolution);
 
         // ScrollView
         RCTRefreshControl.configure({
