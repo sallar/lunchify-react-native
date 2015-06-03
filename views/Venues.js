@@ -46,6 +46,7 @@ class VenuesView extends Component {
     }
 
     componentDidMount() {
+        // Turn Geo Callback into a promise
         var resolution,
             refPromise = fetch('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
             geoPromise = new Promise(function(resolve) {
@@ -53,6 +54,7 @@ class VenuesView extends Component {
             }),
             _this = this;
 
+        // Wait for all promises to resolve
         Promise.all([refPromise, geoPromise]).then(([response, initialPosition]) => {
             response.json().then((response) => {
                 // Calc Distances
