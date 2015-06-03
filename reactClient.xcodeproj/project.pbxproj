@@ -28,7 +28,6 @@
 		999F82F11B1E33F900928094 /* VibrancyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EA1B1E33F900928094 /* VibrancyViewManager.m */; };
 		999F82F21B1E33F900928094 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82ED1B1E33F900928094 /* BlurView.m */; };
 		999F82F31B1E33F900928094 /* BlurViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EF1B1E33F900928094 /* BlurViewManager.m */; };
-		999F83011B1E37FF00928094 /* NeutraTextBoldSC.otf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83001B1E37FF00928094 /* NeutraTextBoldSC.otf */; };
 		999F83051B1F6F1B00928094 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83021B1F6F1B00928094 /* Lato-Bold.ttf */; };
 		999F83061B1F6F1B00928094 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83031B1F6F1B00928094 /* Lato-Light.ttf */; };
 		999F83071B1F6F1B00928094 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F83041B1F6F1B00928094 /* Lato-Regular.ttf */; };
@@ -162,7 +161,6 @@
 		999F82ED1B1E33F900928094 /* BlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurView.m; sourceTree = "<group>"; };
 		999F82EE1B1E33F900928094 /* BlurViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurViewManager.h; sourceTree = "<group>"; };
 		999F82EF1B1E33F900928094 /* BlurViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurViewManager.m; sourceTree = "<group>"; };
-		999F83001B1E37FF00928094 /* NeutraTextBoldSC.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NeutraTextBoldSC.otf; sourceTree = "<group>"; };
 		999F83021B1F6F1B00928094 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		999F83031B1F6F1B00928094 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		999F83041B1F6F1B00928094 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -341,14 +339,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				999F83081B1F7CCA00928094 /* Lato-Semibold.ttf */,
-				999F83021B1F6F1B00928094 /* Lato-Bold.ttf */,
-				999F83031B1F6F1B00928094 /* Lato-Light.ttf */,
-				999F83041B1F6F1B00928094 /* Lato-Regular.ttf */,
-				999F83001B1E37FF00928094 /* NeutraTextBoldSC.otf */,
+				999F830A1B1F808900928094 /* Fonts */,
 				999F82E61B1E33F900928094 /* RNVibrancy */,
 				999F82EB1B1E33F900928094 /* RNBlur */,
-				99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */,
 				99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* reactClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -390,6 +383,18 @@
 			);
 			name = RNBlur;
 			path = "node_modules/react-native-blur/RNBlur";
+			sourceTree = "<group>";
+		};
+		999F830A1B1F808900928094 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				999F83081B1F7CCA00928094 /* Lato-Semibold.ttf */,
+				999F83021B1F6F1B00928094 /* Lato-Bold.ttf */,
+				999F83031B1F6F1B00928094 /* Lato-Light.ttf */,
+				999F83041B1F6F1B00928094 /* Lato-Regular.ttf */,
+				99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		99C6E2E21B19B9B900384371 /* Products */ = {
@@ -624,7 +629,6 @@
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				999F83051B1F6F1B00928094 /* Lato-Bold.ttf in Resources */,
 				999F83091B1F7CCA00928094 /* Lato-Semibold.ttf in Resources */,
-				999F83011B1E37FF00928094 /* NeutraTextBoldSC.otf in Resources */,
 				999F83071B1F6F1B00928094 /* Lato-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
