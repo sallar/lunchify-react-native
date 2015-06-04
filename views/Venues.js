@@ -9,7 +9,7 @@ window.navigator.userAgent = "react-native";
  * Required Modules
  */
 var React     = require('react-native'),
-    Loading   = require('./../components/Loading'),
+    Loading   = require('./Loading'),
     Helpers   = require('../utils/Helpers'),
     VenueView = require('./Venue'),
     TitleView = require('./Title'),
@@ -139,13 +139,25 @@ class VenuesView extends Component {
         )
     }
 
+    renderLoading() {
+        if( this.state.dataSource.getRowCount() === 0 ) {
+            return (
+                <Loading>closest venues...</Loading>
+            );
+        }
+    }
+
     render() {
+
         return (
-            <ListView
-                ref={LISTVIEW}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderVenue.bind(this)}
-                />
+            <View style={Stylesheet.flex}>
+                {this.renderLoading.call(this)}
+                <ListView
+                    ref={LISTVIEW}
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderVenue.bind(this)}
+                    />
+            </View>
         )
     }
 }
