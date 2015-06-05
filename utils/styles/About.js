@@ -6,6 +6,6 @@ var {StyleSheet} = require('react-native');
 
 module.exports = ((variables) => {
     return StyleSheet.create({
-        
+
     });
 });

@@ -35,8 +35,8 @@ module.exports = ((variables) => {
             color: '#CCCCCC'
         },
         infoTitle: {
-            height: 28,
-            fontSize: 18,
+            height: 26,
+            fontSize: 16,
             fontWeight: '600',
             marginBottom: 0,
             fontFamily: 'Lato'

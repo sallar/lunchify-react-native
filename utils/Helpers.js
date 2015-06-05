@@ -39,6 +39,10 @@ class Helpers {
     formatDistance(value) {
         return (value < 1) ? parseInt(value * 1000) + ' m' : value.toPrecision(2) + ' km';
     }
+
+    stripTags(str) {
+        return str.replace(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig, "");
+    }
 }
 
 module.exports = new Helpers;

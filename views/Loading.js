@@ -17,8 +17,8 @@ var Loading = React.createClass({
         return (
             <View style={LoadingStyles.container}>
                 <View style={[LoadingStyles.loading]}>
-                    <Text>Loading {this.props.children}</Text>
                     <ActivityIndicatorIOS style={{alignSelf: 'center'}} />
+                    <Text style={Stylesheet.text}>Loading {this.props.children}</Text>
                 </View>
             </View>
         )

@@ -3,8 +3,6 @@
  * @date 27.05.2015
  */
 'use strict';
-//socket.io assumes navigator.userAgent is a string, supply a dummy one to make it happy
-window.navigator.userAgent = "react-native";
 /**
  * Required Modules
  */
@@ -63,8 +61,7 @@ class VenuesView extends Component {
                 // Set State
                 _this.setState({
                     venues: venues,
-                    dataSource: baseDataSource.cloneWithRows(venues),
-                    initialPosition: initialPosition
+                    dataSource: baseDataSource.cloneWithRows(venues)
                 });
             });
         });
@@ -122,18 +119,19 @@ class VenuesView extends Component {
         );
     }
 
-    toVenue() {
+    toVenue(venue) {
         this.props.toRoute({
-            name: 'Venue',
+            name: venue.name,
             component: VenueView,
-            titleComponent: TitleView
+            titleComponent: TitleView,
+            data: venue
         })
     }
 
     renderVenue(venue) {
         return (
             <VenuesItemView
-                onPress={this.toVenue.bind(this)}
+                onPress={this.toVenue.bind(this, venue)}
                 venue={venue}
                 />
         )
@@ -148,7 +146,6 @@ class VenuesView extends Component {
     }
 
     render() {
-
         return (
             <View style={Stylesheet.flex}>
                 {this.renderLoading.call(this)}
