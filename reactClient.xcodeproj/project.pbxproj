@@ -24,6 +24,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		998604EF1B23306300D5301E /* libRNOverlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 998604EE1B23305500D5301E /* libRNOverlay.a */; };
 		999F82F01B1E33F900928094 /* VibrancyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82E81B1E33F900928094 /* VibrancyView.m */; };
 		999F82F11B1E33F900928094 /* VibrancyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EA1B1E33F900928094 /* VibrancyViewManager.m */; };
 		999F82F21B1E33F900928094 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82ED1B1E33F900928094 /* BlurView.m */; };
@@ -121,6 +122,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		998604ED1B23305500D5301E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 998604DD1B23305500D5301E /* RNOverlay.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNOverlay;
+		};
 		99C6E2E51B19B9B900384371 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */;
@@ -153,6 +161,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		998604DD1B23305500D5301E /* RNOverlay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNOverlay.xcodeproj; path = "node_modules/react-native-overlay/RNOverlay.xcodeproj"; sourceTree = "<group>"; };
 		999F82E71B1E33F900928094 /* VibrancyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyView.h; sourceTree = "<group>"; };
 		999F82E81B1E33F900928094 /* VibrancyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrancyView.m; sourceTree = "<group>"; };
 		999F82E91B1E33F900928094 /* VibrancyViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyViewManager.h; sourceTree = "<group>"; };
@@ -193,6 +202,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				99C6E2E71B19B9CD00384371 /* libRCTRefreshControl.a in Frameworks */,
+				998604EF1B23306300D5301E /* libRNOverlay.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +323,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				998604DD1B23305500D5301E /* RNOverlay.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302AF1ABCB8E700DB3ED1 /* RCTAdSupport.xcodeproj */,
@@ -357,6 +368,14 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* reactClient.app */,
 				00E356EE1AD99517003FC87E /* reactClientTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		998604DE1B23305500D5301E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				998604EE1B23305500D5301E /* libRNOverlay.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -518,6 +537,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 998604DE1B23305500D5301E /* Products */;
+					ProjectRef = 998604DD1B23305500D5301E /* RNOverlay.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -603,6 +626,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		998604EE1B23305500D5301E /* libRNOverlay.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNOverlay.a;
+			remoteRef = 998604ED1B23305500D5301E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		99C6E2E61B19B9B900384371 /* libRCTRefreshControl.a */ = {

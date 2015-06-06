@@ -7,7 +7,6 @@
  * Required Modules
  */
 var React        = require('react-native'),
-    moment       = require('moment'),
     Helpers      = require('../utils/Helpers'),
     Icon         = require('MaterialDesign'),
     ParallaxView = require('react-native-parallax-view'),
@@ -31,30 +30,18 @@ class VenueView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            venue: props.data,
-            dataSource: baseDataSource
+            venue: props.data.venue,
+            rawMenu: props.data.menu,
+            dataSource: baseDataSource.cloneWithRows(this.processRows(props.data.menu))
         }
     }
 
     componentDidMount() {
-        var refPromise = fetch("https://lunchify.firebaseio.com/areas/keilaniemi/meals/" +
-                this.state.venue.id + "/" + this.getDate() + '.json');
-        var _this = this;
-
-        // Get promised data
-        refPromise.then((response) => {
-            return response.json();
-        }).then((response) => {
-            // Set state
-            this.setState({
-                dataSource: baseDataSource.cloneWithRows(_this.processRows(response)),
-                rawMenu: response
-            });
-        });
-    }
-
-    getDate() {
-        return moment().format('YYYY-MM-DD');
+        //// Set state
+        //this.setState({
+        //    dataSource: ,
+        //
+        //});
     }
 
     processRows(response) {
