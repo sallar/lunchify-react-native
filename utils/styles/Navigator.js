@@ -13,16 +13,9 @@ module.exports = ((variables) => {
             backgroundColor: variables.brandColor
         },
         scene: {
-            backgroundColor: '#E6E9ED'
-        },
-        navbarText: {
-            color: 'white',
-            fontSize: 18,
-            margin: 10,
-            marginTop: 15,
-            fontWeight: 'bold',
-            textAlign: 'center',
-            alignItems: 'center',
+            backgroundColor: '#F5F7FA',
+            marginTop: 64,
+            flex: 1
         },
         backButtonText: {
             fontWeight: '400',
@@ -36,8 +29,31 @@ module.exports = ((variables) => {
             height: 24,
             color: 'white'
         },
+        navBarText: {
+            fontSize: 18,
+            marginTop: 8,
+            fontFamily: variables.fontFamily
+        },
+        navBarTitleText: {
+            //color: cssVar('fbui-bluegray-60'),
+            fontWeight: 'bold',
+            marginVertical: 10,
+            color: 'white'
+        },
+        navBarButtonText: {
+            //color: cssVar('fbui-accent-blue'),
+            fontSize: 16,
+            color: 'white',
+            marginTop: 10,
+        },
+        navBarLeftButton: {
+            paddingLeft: 10,
+        },
+        navBarRightButton: {
+            paddingRight: 10,
+        },
         navbarLogo: {
-            top: 3
+            marginVertical: 10
         }
     });
 });

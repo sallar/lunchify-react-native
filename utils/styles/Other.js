@@ -21,7 +21,7 @@ module.exports = ((variables) => {
 
         Indicator: StyleSheet.create({
             wrapper: {
-                backgroundColor: '#ffffff',
+                backgroundColor: 'transparent',
                 height: 60,
                 marginTop: 10,
             },

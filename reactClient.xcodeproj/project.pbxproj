@@ -24,7 +24,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		998604EF1B23306300D5301E /* libRNOverlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 998604EE1B23305500D5301E /* libRNOverlay.a */; };
 		999F82F01B1E33F900928094 /* VibrancyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82E81B1E33F900928094 /* VibrancyView.m */; };
 		999F82F11B1E33F900928094 /* VibrancyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EA1B1E33F900928094 /* VibrancyViewManager.m */; };
 		999F82F21B1E33F900928094 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82ED1B1E33F900928094 /* BlurView.m */; };
@@ -33,8 +32,8 @@
 		999F83101B1F812400928094 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830C1B1F812400928094 /* Lato-Light.ttf */; };
 		999F83111B1F812400928094 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830D1B1F812400928094 /* Lato-Regular.ttf */; };
 		999F83121B1F812400928094 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999F830E1B1F812400928094 /* Lato-Semibold.ttf */; };
-		99C6E2E71B19B9CD00384371 /* libRCTRefreshControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C6E2E61B19B9B900384371 /* libRCTRefreshControl.a */; };
-		99F2A11D1B1B9B2D00B32ACD /* MaterialDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */; };
+		99B094F81B27645F002A88AB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99B094F71B27645F002A88AB /* MaterialIcons.ttf */; };
+		99B095401B276E9C002A88AB /* libRCTRefreshControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B0953F1B276E8D002A88AB /* libRCTRefreshControl.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,16 +121,9 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		998604ED1B23305500D5301E /* PBXContainerItemProxy */ = {
+		99B0953E1B276E8D002A88AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 998604DD1B23305500D5301E /* RNOverlay.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNOverlay;
-		};
-		99C6E2E51B19B9B900384371 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */;
+			containerPortal = 99B0953A1B276E8D002A88AB /* RCTRefreshControl.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTRefreshControl;
@@ -161,7 +153,6 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		998604DD1B23305500D5301E /* RNOverlay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNOverlay.xcodeproj; path = "node_modules/react-native-overlay/RNOverlay.xcodeproj"; sourceTree = "<group>"; };
 		999F82E71B1E33F900928094 /* VibrancyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyView.h; sourceTree = "<group>"; };
 		999F82E81B1E33F900928094 /* VibrancyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrancyView.m; sourceTree = "<group>"; };
 		999F82E91B1E33F900928094 /* VibrancyViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyViewManager.h; sourceTree = "<group>"; };
@@ -174,8 +165,8 @@
 		999F830C1B1F812400928094 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
 		999F830D1B1F812400928094 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		999F830E1B1F812400928094 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Semibold.ttf"; path = "fonts/Lato-Semibold.ttf"; sourceTree = "<group>"; };
-		99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTRefreshControl.xcodeproj; path = vendor/RCTRefreshControl/RCTRefreshControl.xcodeproj; sourceTree = "<group>"; };
-		99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialDesign.ttf; path = "node_modules/react-native-vector-icons/Fonts/MaterialDesign.ttf"; sourceTree = "<group>"; };
+		99B094F71B27645F002A88AB /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		99B0953A1B276E8D002A88AB /* RCTRefreshControl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTRefreshControl.xcodeproj; path = "node_modules/react-refresh-control/RCTRefreshControl.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,8 +192,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				99C6E2E71B19B9CD00384371 /* libRCTRefreshControl.a in Frameworks */,
-				998604EF1B23306300D5301E /* libRNOverlay.a in Frameworks */,
+				99B095401B276E9C002A88AB /* libRCTRefreshControl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +313,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				998604DD1B23305500D5301E /* RNOverlay.xcodeproj */,
+				99B0953A1B276E8D002A88AB /* RCTRefreshControl.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302AF1ABCB8E700DB3ED1 /* RCTAdSupport.xcodeproj */,
@@ -353,7 +343,6 @@
 				999F830A1B1F808900928094 /* Fonts */,
 				999F82E61B1E33F900928094 /* RNVibrancy */,
 				999F82EB1B1E33F900928094 /* RNBlur */,
-				99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* reactClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* reactClientTests */,
@@ -368,14 +357,6 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* reactClient.app */,
 				00E356EE1AD99517003FC87E /* reactClientTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		998604DE1B23305500D5301E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				998604EE1B23305500D5301E /* libRNOverlay.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,19 +388,19 @@
 		999F830A1B1F808900928094 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				99B094F71B27645F002A88AB /* MaterialIcons.ttf */,
 				999F830B1B1F812400928094 /* Lato-Bold.ttf */,
 				999F830C1B1F812400928094 /* Lato-Light.ttf */,
 				999F830D1B1F812400928094 /* Lato-Regular.ttf */,
 				999F830E1B1F812400928094 /* Lato-Semibold.ttf */,
-				99F2A11C1B1B9B2D00B32ACD /* MaterialDesign.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		99C6E2E21B19B9B900384371 /* Products */ = {
+		99B0953B1B276E8D002A88AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				99C6E2E61B19B9B900384371 /* libRCTRefreshControl.a */,
+				99B0953F1B276E8D002A88AB /* libRCTRefreshControl.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -514,8 +495,8 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
-					ProductGroup = 99C6E2E21B19B9B900384371 /* Products */;
-					ProjectRef = 99C6E2E11B19B9B900384371 /* RCTRefreshControl.xcodeproj */;
+					ProductGroup = 99B0953B1B276E8D002A88AB /* Products */;
+					ProjectRef = 99B0953A1B276E8D002A88AB /* RCTRefreshControl.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -536,10 +517,6 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-				},
-				{
-					ProductGroup = 998604DE1B23305500D5301E /* Products */;
-					ProjectRef = 998604DD1B23305500D5301E /* RNOverlay.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -628,18 +605,11 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		998604EE1B23305500D5301E /* libRNOverlay.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNOverlay.a;
-			remoteRef = 998604ED1B23305500D5301E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		99C6E2E61B19B9B900384371 /* libRCTRefreshControl.a */ = {
+		99B0953F1B276E8D002A88AB /* libRCTRefreshControl.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTRefreshControl.a;
-			remoteRef = 99C6E2E51B19B9B900384371 /* PBXContainerItemProxy */;
+			remoteRef = 99B0953E1B276E8D002A88AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -661,9 +631,9 @@
 				999F830F1B1F812400928094 /* Lato-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				999F83101B1F812400928094 /* Lato-Light.ttf in Resources */,
+				99B094F81B27645F002A88AB /* MaterialIcons.ttf in Resources */,
 				999F83111B1F812400928094 /* Lato-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				99F2A11D1B1B9B2D00B32ACD /* MaterialDesign.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

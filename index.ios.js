@@ -6,16 +6,15 @@
 
 var React      = require('react-native'),
     Helpers    = require('./utils/Helpers'),
-    //Navigator  = require('./views/Navigator'),
-    Navigator  = require('./views/NewNavigation'),
+    Navigator  = require('./views/Navigator'),
     VenuesView = require('./views/Venues');
 
 var {
     AppRegistry,
     Component,
     Text,
-        StatusBarIOS,
-    } = React;
+    StatusBarIOS,
+} = React;
 
 /**
  * Main App
@@ -39,4 +38,3 @@ class Lunchify extends Component {
  * Register
  */
 AppRegistry.registerComponent('reactClient', () => Lunchify);
-module.exports = Lunchify;

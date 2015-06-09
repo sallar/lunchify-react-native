@@ -5,6 +5,7 @@
 'use strict';
 
 var React  = require('react-native'),
+    Loading = require('./Loading'),
     {Stylesheet} = require('../utils/Styles');
 
 var {
@@ -12,45 +13,24 @@ var {
     View,
     MapView,
     StyleSheet,
-    Text,
-    TextInput,
 } = React;
-
-/**
- * Navigator Main Class
- */
-//class MapView extends Component {
-//    constructor(props) {
-//        super(props);
-//    }
-//
-//    render() {
-//        return(
-//            <View>
-//                <MapView
-//                    region={null}
-//                    annotations={null}
-//                    showsUserLocation={true}
-//                    />
-//            </View>
-//        );
-//    }
-//}
-
 
 class MapScreenView extends Component{
     constructor(props) {
         super(props);
         this.state = {
             venue: props.data,
-            isMounted: false
+            isMounted: false,
         }
     }
 
     componentDidMount() {
-        this.setState({
-            isMounted: false
-        });
+        setTimeout(() => {
+            this.setState({
+                isMounted: true
+            });
+        }, 500);
+
     }
 
     renderMap() {
@@ -59,17 +39,23 @@ class MapScreenView extends Component{
         if(this.state.isMounted) {
             Map = (<MapView
                 style={[styles.map]}
+                region={{
+                    latitude: parseFloat(this.state.venue.lat),
+                    longitude: parseFloat(this.state.venue.lng),
+                    latitudeDelta: 0.1,
+                    longitudeDelta: 0.1,
+                }}
+                showsUserLocation={true}
                 annotations={[
-                        {
-                            latitude: parseFloat(this.state.venue.lat),
-                            longitude: parseFloat(this.state.venue.lng),
-                            title: this.state.venue.name,
-                            subtitle: this.state.venue.address
-                        }
-                    ]}
-                showsUserLocation={false}/>);
+                    {
+                        latitude: parseFloat(this.state.venue.lat),
+                        longitude: parseFloat(this.state.venue.lng),
+                        title: this.state.venue.name,
+                        subtitle: this.state.venue.address
+                    }
+                ]} />);
         } else {
-            Map = <View />;
+            Map = <Loading />;
         }
 
         return Map;
@@ -77,8 +63,8 @@ class MapScreenView extends Component{
 
     render() {
         return (
-            <View style={Stylesheet.flex}>
-                <Text>Test</Text>
+            <View style={Stylesheet.textContainer}>
+                {this.renderMap()}
             </View>
         )
     }
@@ -87,8 +73,7 @@ class MapScreenView extends Component{
 
 var styles = StyleSheet.create({
     map: {
-        width: 200,
-        height: 200
+        flex: 1
     }
 });
 

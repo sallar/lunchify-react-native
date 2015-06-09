@@ -8,8 +8,7 @@
  */
 var React        = require('react-native'),
     Helpers      = require('../utils/Helpers'),
-    Icon         = require('MaterialDesign'),
-    ParallaxView = require('react-native-parallax-view'),
+    Icon         = require('MaterialIcons'),
     HTMLView     = require('react-native-htmlview'),
     Screen       = require('Dimensions').get('window'),
     {Stylesheet, VenueStyles, ListStyles} = require('../utils/Styles');
@@ -32,19 +31,12 @@ var baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !
 class VenueView extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             venue: props.data.venue,
             rawMenu: props.data.menu,
             dataSource: baseDataSource.cloneWithRows(this.processRows(props.data.menu))
         }
-    }
-
-    componentDidMount() {
-        //// Set state
-        //this.setState({
-        //    dataSource: ,
-        //
-        //});
     }
 
     processRows(response) {
