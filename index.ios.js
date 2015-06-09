@@ -6,20 +6,25 @@
 
 var React      = require('react-native'),
     Helpers    = require('./utils/Helpers'),
-    Navigator  = require('./views/Navigator'),
+    //Navigator  = require('./views/Navigator'),
+    Navigator  = require('./views/NewNavigation'),
     VenuesView = require('./views/Venues');
 
 var {
     AppRegistry,
-    TabBarIOS,
     Component,
     Text,
+        StatusBarIOS,
     } = React;
 
 /**
  * Main App
  */
 class Lunchify extends Component {
+    componentDidMount() {
+        StatusBarIOS.setStyle(1, false);
+    }
+
     render() {
         return(
             <Navigator

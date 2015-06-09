@@ -10,11 +10,14 @@ var React     = require('react-native'),
     moment    = require('moment'),
     Loading   = require('./Loading'),
     Helpers   = require('../utils/Helpers'),
+    Data = require('../utils/Data'),
     VenueView = require('./Venue'),
+    TitleView = require('./Title'),
+    MapView = require('./Map'),
     TitleView = require('./Title'),
     Icon      = require('MaterialDesign'),
     RCTRefreshControl = require('RCTRefreshControl'),
-    {Stylesheet, VenuesStyles, ListStyles, IndicatorStyles} = require('../utils/Styles'),
+    {Stylesheet, VenuesStyles, ListStyles, IndicatorStyles, NavigatorStyle} = require('../utils/Styles'),
     LISTVIEW  = 'ListView',
     GPSOptions = {
         enableHighAccuracy: false,
@@ -49,7 +52,7 @@ class VenuesView extends Component {
     componentDidMount() {
         // Turn Geo Callback into a promise
         var resolution,
-            refPromise = fetch('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
+            refPromise = Data.load('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
             geoPromise = new Promise(function(resolve) {
                 resolution = resolve;
             }),
@@ -57,21 +60,19 @@ class VenuesView extends Component {
 
         // Wait for all promises to resolve
         Promise.all([refPromise, geoPromise]).then(([response, initialPosition]) => {
-            response.json().then((response) => {
-                // Calc Distances
-                var venues = _this.calcDistances(response, initialPosition);
+            // Calc Distances
+            var venues = _this.calcDistances(response, initialPosition);
 
-                // Set State
-                _this.setState({
-                    venues: venues,
-                    dataSource: baseDataSource.cloneWithRows(venues)
-                });
+            // Set State
+            _this.setState({
+                venues: venues,
+                dataSource: baseDataSource.cloneWithRows(venues)
             });
         });
 
         // Call Geo location
-        navigator.geolocation.getCurrentPosition(resolution);
-        //resolution({coords: {latitude: 60.1764360, longitude: 24.8306610}});
+        //navigator.geolocation.getCurrentPosition(resolution);
+        resolution({coords: {latitude: 60.1764360, longitude: 24.8306610}});
 
         // ScrollView
         RCTRefreshControl.configure({
@@ -82,11 +83,10 @@ class VenuesView extends Component {
     }
 
     calcDistances(data, geo) {
-        var venues = [];
-
         // Calc Distances
-        for(var item in data) {
-            var item = data[item];
+        for(var index in data) {
+            var item = data[index];
+
             item.distance = Helpers.calcDistance({
                 lat: geo.coords.latitude,
                 lng: geo.coords.longitude
@@ -94,15 +94,14 @@ class VenuesView extends Component {
                 lat: item.lat,
                 lng: item.lng
             });
-            venues.push(item);
         };
 
         // Closest first
-        venues.sort((a, b) => {
+        data.sort((a, b) => {
             return a.distance - b.distance;
         });
 
-        return venues;
+        return data;
     }
 
     recalcDistance() {
@@ -127,9 +126,33 @@ class VenuesView extends Component {
         return moment('2015-06-05').format('YYYY-MM-DD');
     }
 
+    renderMapButton(venue) {
+        return React.createClass({
+            mapScreen() {
+                this.props.toRoute({
+                    name: 'Directions',
+                    component: MapView,
+                    titleComponent: TitleView,
+                    data: venue
+                })
+            },
+
+            render: function() {
+                return(
+                    <TouchableHighlight underlayColor="transparent" onPress={this.mapScreen}>
+                        <View>
+                            <Icon name="map" size={24} style={NavigatorStyle.icon} />
+                        </View>
+                    </TouchableHighlight>
+                );
+            }
+        });
+    }
+
     toVenue(venue, view) {
-        var refPromise = fetch("https://lunchify.firebaseio.com/areas/keilaniemi/meals/" +
-            venue.id + "/" + this.getDate() + '.json');
+        var refUrl = "https://lunchify.firebaseio.com/areas/keilaniemi/meals/" +
+                venue.id + "/" + this.getDate() + ".json",
+            refPromise = Data.load(refUrl);
 
         // Start Loading
         view.setState({ isLoading: true });
@@ -137,17 +160,26 @@ class VenuesView extends Component {
         // Get promised data
         refPromise.then((response) => {
             view.setState({ isLoading: false });
-            return response.json();
-        }).then((response) => {
-            this.props.toRoute({
-                name: venue.name,
+
+            this.props.nav.push({
+                title: venue.name,
                 component: VenueView,
-                titleComponent: TitleView,
                 data: {
                     venue: venue,
                     menu: response
                 }
-            })
+            });
+
+            //this.props.toRoute({
+            //    name: venue.name,
+            //    component: VenueView,
+            //    titleComponent: TitleView,
+            //    rightCorner: this.renderMapButton(venue),
+            //    data: {
+            //        venue: venue,
+            //        menu: response
+            //    }
+            //})
         });
     }
 

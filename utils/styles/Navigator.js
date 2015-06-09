@@ -25,10 +25,12 @@ module.exports = ((variables) => {
             alignItems: 'center',
         },
         backButtonText: {
-            fontWeight: '400'
+            fontWeight: '400',
+            fontSize: 17
         },
         icon: {
             marginLeft: 8,
+            marginRight: 8,
             marginTop: 6,
             width: 24,
             height: 24,

@@ -43,6 +43,42 @@ class Helpers {
     stripTags(str) {
         return str.replace(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig, "");
     }
+
+    stripSpaces(str) {
+        return str.replace(/\s\s+/g, ' ');
+    }
+
+    hash(str) {
+        if (typeof str !== 'string') {
+            str = str + "";
+        }
+        /*jshint bitwise:false */
+        var i, l,
+            hval = 0x811c9dc5, // Seed,
+            asString = true;
+
+        for (i = 0, l = str.length; i < l; i+=1) {
+            hval ^= str.charCodeAt(i);
+            hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+        }
+        if( asString ){
+            // Convert to 8 digit hex string
+            return ("0000000" + (hval >>> 0).toString(16)).substr(-8);
+        }
+        return hval.toString() >>> 0;
+    }
+
+    toArray(object) {
+        var arr = [];
+
+        for(var index in object) {
+            if(object.hasOwnProperty(index)) {
+                arr.push(object[index]);
+            }
+        }
+
+        return arr;
+    }
 }
 
 module.exports = new Helpers;

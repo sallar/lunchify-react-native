@@ -11,6 +11,7 @@ var React        = require('react-native'),
     Icon         = require('MaterialDesign'),
     ParallaxView = require('react-native-parallax-view'),
     HTMLView     = require('react-native-htmlview'),
+    Screen       = require('Dimensions').get('window'),
     {Stylesheet, VenueStyles, ListStyles} = require('../utils/Styles');
 
 var {
@@ -19,6 +20,8 @@ var {
     Component,
     TouchableHighlight,
     ListView,
+    ScrollView,
+    Image,
     } = React;
 
 var baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id});
@@ -73,19 +76,37 @@ class VenueView extends Component {
     }
 
     render() {
+        //return (
+        //    <ParallaxView
+        //        backgroundSource={require('image!placeholder')}
+        //        windowHeight={180}
+        //        >
+        //        <View style={Stylesheet.flex}>
+        //            <ListView
+        //                dataSource={this.state.dataSource}
+        //                renderRow={this.renderMeal.bind(this)}
+        //                />
+        //        </View>
+        //    </ParallaxView>
+        //)
         return (
-            <ParallaxView
-                backgroundSource={{uri: 'http://192.168.11.2/ravintola-maukas.jpg'}}
-                windowHeight={150}
-                >
+            <ScrollView>
+                <Image
+                    source={require('image!placeholder')}
+                    resizeMode="cover"
+                    style={{
+                        width: Screen.width,
+                        height: 200
+                    }} />
+
                 <View style={Stylesheet.flex}>
                     <ListView
                         dataSource={this.state.dataSource}
                         renderRow={this.renderMeal.bind(this)}
                         />
                 </View>
-            </ParallaxView>
-        )
+            </ScrollView>
+        );
     }
 }
 
@@ -95,12 +116,18 @@ class VenueItemView extends Component{
 
         return (
             <View style={Stylesheet.white}>
-                    <View style={[ListStyles.row, ListStyles.itemRow]}>
-                        <View style={ListStyles.infoCell}>
-                            <HTMLView value={meal.name}/>
-                            <HTMLView value={meal.name_fi}/>
-                        </View>
+                <View style={[ListStyles.row, ListStyles.itemRowFree]}>
+                    <View style={ListStyles.infoCell}>
+                        <HTMLView
+                            value={"<p>" + Helpers.stripTags(meal.name) + "</p>"}
+                            stylesheet={VenueStyles.textStyles} />
+                        <View style={VenueStyles.Main.spacer}></View>
+                        <HTMLView
+                            value={"<span>" + Helpers.stripSpaces(meal.name_fi) + "</span>"}
+                            stylesheet={VenueStyles.textStyles}
+                            />
                     </View>
+                </View>
                 <View style={ListStyles.cellBorder} />
             </View>
         )

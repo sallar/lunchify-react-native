@@ -6,15 +6,17 @@
 
 var {StyleSheet, PixelRatio} = require('react-native');
 var variables = {
-        brandColor           : '#ED5565',
+        //brandColor           : '#ED5565',
+        brandColor           : '#DA4453',
         cellPaddingHorizontal: 15,
         cellPaddingVertical  : 10,
-        pixelRatio           : PixelRatio.get()
+        pixelRatio           : PixelRatio.get(),
+        fontFamily           : 'Lato'
     };
 
 module.exports = {
     Variables      : variables,
-    Stylesheet     : require('./styles/Base'),
+    Stylesheet     : require('./styles/Base')(variables),
     NavigatorStyle : require('./styles/Navigator')(variables),
     ListStyles     : require('./styles/List')(variables),
     VenuesStyles   : require('./styles/Venues')(variables),

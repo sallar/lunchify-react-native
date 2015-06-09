@@ -16,6 +16,10 @@ module.exports = ((variables) => {
             alignItems: 'stretch',
             backgroundColor: 'white',
         },
+        itemRowFree: {
+            alignItems: 'stretch',
+            backgroundColor: 'white',
+        },
         cellBorder: {
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
             height: 1 / variables.pixelRatio,
