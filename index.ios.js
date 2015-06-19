@@ -37,4 +37,4 @@ class Lunchify extends Component {
 /**
  * Register
  */
-AppRegistry.registerComponent('reactClient', () => Lunchify);
+AppRegistry.registerComponent('Lunchify', () => Lunchify);
