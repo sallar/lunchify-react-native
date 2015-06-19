@@ -1,36 +1,24 @@
 /**
- * The examples provided by Facebook are for non-commercial testing and
- * evaluation purposes only.
- *
- * Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
- * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * @author Sallar Kaboli <sallar.kaboli@gmail.com>
+ * @date 19.06.2015
  */
 'use strict';
 
-
 var React = require('react-native');
 var {
-        PixelRatio,
-        Navigator,
-        ScrollView,
-        StyleSheet,
-        Text,
-        TouchableHighlight,
-        TouchableOpacity,
-        View,
-    Image,
-        } = React;
+    PixelRatio,
+    Navigator,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    TouchableOpacity,
+    View,
+    Image
+} = React;
 
-var cssVar = require('cssVar');
 var MapView = require('./Map');
-var Icon      = require('MaterialIcons');
-var {Variables, NavigatorStyle} = require('../utils/Styles');
+var {Variables, NavigatorStyles} = require('../utils/Styles');
 
 var NavigationBarRouteMapper = {
 
@@ -43,8 +31,8 @@ var NavigationBarRouteMapper = {
         return (
             <TouchableOpacity
                 onPress={() => navigator.pop()}>
-                <View style={NavigatorStyle.navBarLeftButton}>
-                    <Text style={[NavigatorStyle.navBarText, NavigatorStyle.navBarButtonText]}>
+                <View style={NavigatorStyles.navBarLeftButton}>
+                    <Text style={[NavigatorStyles.navBarText, NavigatorStyles.navBarButtonText]}>
                         {'Back' || previousRoute.title}
                     </Text>
                 </View>
@@ -53,19 +41,8 @@ var NavigationBarRouteMapper = {
     },
 
     RightButton: function(route, navigator, index, navState) {
-        if(typeof route.data === 'object' && route.title !== 'Map') {
-            return (
-                <TouchableOpacity
-                    onPress={() => navigator.push({
-                        title: 'Map',
-                        component: MapView,
-                        data: route.data.venue
-                    })}>
-                    <View style={NavigatorStyle.navBarRightButton}>
-                        <Icon name="map" size={24} style={[NavigatorStyle.navBarText, NavigatorStyle.navBarButtonText]} />
-                    </View>
-                </TouchableOpacity>
-            );
+        if(typeof route.rightButton !== void 0) {
+            return route.rightButton;
         }
         else {
             return (<View />);
@@ -75,11 +52,11 @@ var NavigationBarRouteMapper = {
     Title: function(route, navigator, index, navState) {
         if(typeof route.imageTitle !== "undefined") {
             return (
-                <Image source={require('image!logo')} style={NavigatorStyle.navbarLogo} />
+                <Image source={require('image!logo')} style={NavigatorStyles.navbarLogo} />
             );
         }
         return (
-            <Text style={[NavigatorStyle.navBarText, NavigatorStyle.navBarTitleText]}>
+            <Text style={[NavigatorStyles.navBarText, NavigatorStyles.navBarTitleText]}>
                 {route.title}
             </Text>
         );
@@ -87,18 +64,12 @@ var NavigationBarRouteMapper = {
 
 };
 
-function newRandomRoute() {
-    return {
-        title: '#' + Math.ceil(Math.random() * 1000),
-    };
-}
-
-var NavigationBarSample = React.createClass({
+var NavigationBarView = React.createClass({
 
     renderScene: function(route, navigator) {
         var Component = route.component;
         return (
-            <View style={NavigatorStyle.scene}>
+            <View style={NavigatorStyles.scene}>
                 <Component nav={navigator} data={route.data || {}} />
             </View>
         )
@@ -108,7 +79,6 @@ var NavigationBarSample = React.createClass({
         return (
             <Navigator
                 debugOverlay={false}
-                style={styles.appContainer}
                 initialRoute={{
                     title: this.props.title,
                     imageTitle: true,
@@ -118,7 +88,7 @@ var NavigationBarSample = React.createClass({
                 navigationBar={
                     <Navigator.NavigationBar
                         routeMapper={NavigationBarRouteMapper}
-                        style={styles.navBar}
+                        style={NavigatorStyles.navBar}
                         />
                 }
                 />
@@ -127,34 +97,4 @@ var NavigationBarSample = React.createClass({
 
 });
 
-var styles = StyleSheet.create({
-    messageText: {
-        fontSize: 17,
-        fontWeight: '500',
-        padding: 15,
-        marginTop: 50,
-        marginLeft: 15,
-    },
-    button: {
-        backgroundColor: 'white',
-        padding: 15,
-        borderBottomWidth: 1 / PixelRatio.get(),
-        borderBottomColor: '#CDCDCD',
-    },
-    buttonText: {
-        fontSize: 17,
-        fontWeight: '500',
-    },
-    navBar: {
-        backgroundColor: Variables.brandColor,
-    },
-
-
-    scene: {
-        flex: 1,
-        paddingTop: 20,
-        backgroundColor: '#EAEAEA',
-    },
-});
-
-module.exports = NavigationBarSample;
+module.exports = NavigationBarView;

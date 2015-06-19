@@ -5,7 +5,7 @@
 'use strict';
 
 var React  = require('react-native'),
-    {Stylesheet, NavigatorStyle} = require('../utils/Styles');
+    {Stylesheet, NavigatorStyles} = require('../utils/Styles');
 
 var {
     Component,
@@ -21,8 +21,8 @@ module.exports = React.createClass({
         return(
             <Text style={
                 [Stylesheet.text,
-                NavigatorStyle.navbarText,
-                NavigatorStyle.backButtonText]
+                NavigatorStyles.navbarText,
+                NavigatorStyles.backButtonText]
                 }>Back</Text>
         );
     }

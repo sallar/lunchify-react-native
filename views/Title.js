@@ -5,7 +5,7 @@
 'use strict';
 
 var React  = require('react-native'),
-    {Stylesheet, NavigatorStyle} = require('../utils/Styles');
+    {Stylesheet, NavigatorStyles} = require('../utils/Styles');
 
 var {
     Component,
@@ -20,11 +20,11 @@ module.exports = React.createClass({
     render() {
         if( this.props.text == 'Venues' ) {
             return(
-                <Image source={require('image!logo')} style={NavigatorStyle.navbarLogo} />
+                <Image source={require('image!logo')} style={NavigatorStyles.navbarLogo} />
             );
         }
         return(
-            <Text style={[Stylesheet.text, NavigatorStyle.navbarText]}>{this.props.text}</Text>
+            <Text style={[Stylesheet.text, NavigatorStyles.navbarText]}>{this.props.text}</Text>
         );
     }
 });

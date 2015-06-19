@@ -3,39 +3,46 @@
  * @date 27.05.2015
  */
 'use strict';
+
 /**
  * Required Modules
  */
-var React     = require('react-native'),
-    moment    = require('moment'),
-    Loading   = require('./Loading'),
-    Helpers   = require('../utils/Helpers'),
-    Data = require('../utils/Data'),
-    VenueView = require('./Venue'),
-    TitleView = require('./Title'),
-    MapView = require('./Map'),
-    TitleView = require('./Title'),
-    Icon      = require('MaterialIcons'),
+var React             = require('react-native'),
+    moment            = require('moment'),
+    Loading           = require('./Loading'),
+    Helpers           = require('../utils/Helpers'),
+    Data              = require('../utils/Data'),
+    VenuesItemView    = require('./VenuesItem'),
+    VenueView         = require('./Venue'),
+    MapView           = require('./Map'),
+    RightButton       = require('./RightButton'),
+    Icon              = require('MaterialIcons'),
     RCTRefreshControl = require('RCTRefreshControl'),
-    {Stylesheet, VenuesStyles, ListStyles, IndicatorStyles, NavigatorStyle} = require('../utils/Styles'),
-    LISTVIEW  = 'ListView',
-    GPSOptions = {
+    /* Styles */
+    {
+        Stylesheet,
+        VenuesStyles,
+        ListStyles
+        } = require('../utils/Styles'),
+    /* React */
+    {
+        View,
+        Text,
+        Component,
+        ListView,
+        TouchableHighlight,
+        } = React,
+    /* Options */
+    LISTVIEW     = 'ListView',
+    GPSOptions   = {
         enableHighAccuracy: false,
         timeout: 5000,
         maximumAge: 1000
-    };
-
-var {
-    StyleSheet,
-    View,
-    Text,
-    Component,
-    ListView,
-    TouchableHighlight,
-    ActivityIndicatorIOS,
-} = React;
-
-var baseDataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.id !== r2.id});
+    },
+    /* Data Source */
+    baseDataSource = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1.id !== r2.id
+    });
 
 /**
  * Venues View
@@ -51,10 +58,10 @@ class VenuesView extends Component {
 
     componentDidMount() {
         // Turn Geo Callback into a promise
-        var resolution,
+        var geoPromiseResolve,
             refPromise = Data.load('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
             geoPromise = new Promise(function(resolve) {
-                resolution = resolve;
+                geoPromiseResolve = resolve;
             }),
             _this = this;
 
@@ -71,8 +78,8 @@ class VenuesView extends Component {
         });
 
         // Call Geo location
-        //navigator.geolocation.getCurrentPosition(resolution);
-        resolution({coords: {latitude: 60.1764360, longitude: 24.8306610}});
+        //navigator.geolocation.getCurrentPosition(geoPromiseResolve);
+        (geoPromiseResolve)({coords: {latitude: 60.1764360, longitude: 24.8306610}});
 
         // ScrollView
         RCTRefreshControl.configure({
@@ -126,29 +133,6 @@ class VenuesView extends Component {
         return moment('2015-06-05').format('YYYY-MM-DD');
     }
 
-    renderMapButton(venue) {
-        return React.createClass({
-            mapScreen() {
-                this.props.toRoute({
-                    name: 'Directions',
-                    component: MapView,
-                    titleComponent: TitleView,
-                    data: venue
-                })
-            },
-
-            render: function() {
-                return(
-                    <TouchableHighlight underlayColor="transparent" onPress={this.mapScreen}>
-                        <View>
-                            <Icon name="map" size={24} style={NavigatorStyle.icon} />
-                        </View>
-                    </TouchableHighlight>
-                );
-            }
-        });
-    }
-
     toVenue(venue, view) {
         var refUrl = "https://lunchify.firebaseio.com/areas/keilaniemi/meals/" +
                 venue.id + "/" + this.getDate() + ".json",
@@ -167,19 +151,15 @@ class VenuesView extends Component {
                 data: {
                     venue: venue,
                     menu: response
-                }
+                },
+                rightButton: RightButton({
+                    title: 'Map',
+                    icon: 'map',
+                    component: MapView,
+                    data: venue,
+                    navigator: this.props.nav
+                })
             });
-
-            //this.props.toRoute({
-            //    name: venue.name,
-            //    component: VenueView,
-            //    titleComponent: TitleView,
-            //    rightCorner: this.renderMapButton(venue),
-            //    data: {
-            //        venue: venue,
-            //        menu: response
-            //    }
-            //})
         });
     }
 
@@ -210,99 +190,6 @@ class VenuesView extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={this.renderVenue.bind(this)}
                     />
-            </View>
-        )
-    }
-}
-
-/**
- * Item View
- */
-class VenuesItemView extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: false
-        };
-    }
-
-    renderTitle(venue) {
-        return (
-            <Text style={ListStyles.infoTitle}>
-                {venue.name}
-            </Text>
-        )
-    }
-
-    renderByline(venue) {
-        return (
-            <View style={[ListStyles.row, ListStyles.byline]}>
-                <Badge>{Helpers.formatDistance(venue.distance)}</Badge>
-                <View>
-                    <Text style={[Stylesheet.text, ListStyles.infoAddress]} numberOfLines={1}>
-                        {' '} {venue.address}
-                    </Text>
-                </View>
-            </View>
-        )
-    }
-
-    renderInfo() {
-        var {venue} = this.props
-
-        return (
-            <View style={[Stylesheet.flex, Stylesheet.white]}>
-                <View style={ListStyles.infoCell}>
-                    {this.renderTitle(venue)}
-                    {this.renderByline(venue)}
-                </View>
-            </View>
-        )
-    }
-
-    getIcon() {
-        if(this.state.isLoading) {
-            return (<ActivityIndicatorIOS size="small" animating={true} />);
-        }
-        return (<Icon name="keyboard-arrow-right" size={30} style={ListStyles.arrow}></Icon>);
-    }
-
-    renderArrow() {
-        return (
-            <View style={[Stylesheet.flex_20, Stylesheet.flexCenter, Stylesheet.white]}>
-                {this.getIcon()}
-            </View>
-        );
-    }
-
-    onPress() {
-        this.props.onPress(this);
-    }
-
-    render() {
-        return (
-            <View style={Stylesheet.white}>
-                <TouchableHighlight underlayColor="transparent" onPress={this.onPress.bind(this)}>
-                    <View style={[ListStyles.row, ListStyles.itemRow]}>
-                        {this.renderInfo()}
-                        {this.renderArrow()}
-                    </View>
-                </TouchableHighlight>
-                <View style={ListStyles.cellBorder} />
-            </View>
-        )
-    }
-}
-
-/**
- * Badge
- */
-class Badge extends Component {
-    render() {
-        return (
-            <View style={ListStyles.badge}>
-                <Icon name="location-on" size={10} style={ListStyles.badgeIcon} />
-                <Text style={[Stylesheet.text, ListStyles.badgeText]} children={this.props.children} />
             </View>
         )
     }

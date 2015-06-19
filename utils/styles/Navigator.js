@@ -9,8 +9,8 @@ module.exports = ((variables) => {
         container: {
             flex: 1,
         },
-        header: {
-            backgroundColor: variables.brandColor
+        navBar: {
+            backgroundColor: variables.brandColor,
         },
         scene: {
             backgroundColor: '#F5F7FA',

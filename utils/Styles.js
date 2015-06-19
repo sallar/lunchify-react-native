@@ -15,13 +15,13 @@ var variables = {
     };
 
 module.exports = {
-    Variables      : variables,
-    Stylesheet     : require('./styles/Base')(variables),
-    NavigatorStyle : require('./styles/Navigator')(variables),
-    ListStyles     : require('./styles/List')(variables),
-    VenuesStyles   : require('./styles/Venues')(variables),
-    VenueStyles    : require('./styles/Venue')(variables),
-    AboutStyles    : require('./styles/About')(variables),
-    LoadingStyles  : require('./styles/Other').Loading,
-    IndicatorStyles: require('./styles/Other').Indicator
+    Variables       : variables,
+    Stylesheet      : require('./styles/Base')(variables),
+    NavigatorStyles : require('./styles/Navigator')(variables),
+    ListStyles      : require('./styles/List')(variables),
+    VenuesStyles    : require('./styles/Venues')(variables),
+    VenueStyles     : require('./styles/Venue')(variables),
+    AboutStyles     : require('./styles/About')(variables),
+    LoadingStyles   : require('./styles/Other').Loading,
+    IndicatorStyles : require('./styles/Other').Indicator
 };
