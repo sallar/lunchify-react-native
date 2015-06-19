@@ -31,9 +31,5 @@ var RightButton = React.createClass({
 });
 
 module.exports = function(data) {
-    return <RightButton icon={data.icon} onPress={() => data.navigator.push({
-                title: data.title,
-                component: data.component,
-                data: data.data
-            })} />;
+    return <RightButton icon={data.icon} onPress={data.onPress} />;
 };

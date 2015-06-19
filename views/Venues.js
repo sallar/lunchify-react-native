@@ -31,6 +31,8 @@ var React             = require('react-native'),
         Component,
         ListView,
         TouchableHighlight,
+        AlertIOS,
+        LinkingIOS
         } = React,
     /* Options */
     LISTVIEW     = 'ListView',
@@ -101,7 +103,7 @@ class VenuesView extends Component {
                 lat: item.lat,
                 lng: item.lng
             });
-        };
+        }
 
         // Closest first
         data.sort((a, b) => {
@@ -152,15 +154,54 @@ class VenuesView extends Component {
                     venue: venue,
                     menu: response
                 },
+                /* Map Button */
                 rightButton: RightButton({
-                    title: 'Map',
                     icon: 'map',
-                    component: MapView,
-                    data: venue,
-                    navigator: this.props.nav
+                    onPress: () => this.props.nav.push({
+                        title: 'Map',
+                        component: MapView,
+                        data: venue,
+                        /* Directions Button */
+                        rightButton: RightButton({
+                            icon: 'map',
+                            onPress: this.alertDirections.bind(this, venue)
+                        })
+                    })
                 })
             });
         });
+    }
+
+    alertDirections(venue) {
+        var urls = {
+            google: 'comgooglemaps://?daddr='+venue.address+', Finland&saddr=&directionsmode=walking',
+            apple: 'http://maps.apple.com/?daddr='+venue.address+', Finland&saddr=Current Location'
+        }
+        AlertIOS.alert(
+            'Directions',
+            'Choose the method you like:',
+            [{
+                text: 'Google Maps',
+                onPress: () => {
+                    LinkingIOS.canOpenURL(urls.google, (supported) => {
+                        if (!supported) {
+                            AlertIOS.alert('Google Maps Is Not Installed.');
+                        } else {
+                            LinkingIOS.openURL(urls.google);
+                        }
+                    });
+                }
+            },
+            {
+                text: 'Apple Maps',
+                onPress: () => {
+                    LinkingIOS.openURL(urls.apple);
+                }
+            },
+            {
+                text: 'Cancel'
+            }]
+        )
     }
 
     renderVenue(venue) {
