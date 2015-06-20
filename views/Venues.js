@@ -132,7 +132,7 @@ class VenuesView extends Component {
     }
 
     getDate() {
-        return moment('2015-06-05').format('YYYY-MM-DD');
+        return moment('2015-06-15').format('YYYY-MM-DD');
     }
 
     toVenue(venue, view) {

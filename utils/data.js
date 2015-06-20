@@ -25,7 +25,7 @@ class DataStore {
         //Make a new promise
         promise = new Promise(function(accept) {
             resolve = accept;
-        })
+        });
 
         // Get Data
         Store.table("jsonData").then(function(cache) {
@@ -39,7 +39,7 @@ class DataStore {
                 _this.fetchData(cache, url, hash, resolve);
             } else {
                 // Load from DB
-                _this.loadData(rows, resolve);
+                _this.loadData(rows, resolve, cache, url);
             }
         });
 
@@ -55,21 +55,26 @@ class DataStore {
      * @returns {void}
      */
     fetchData(db, url, hash, resolve) {
-        fetch(url).then(function(response) {
+        fetch(url).then((response) => {
             return response.json();
-        }).done(function(json) {
+        }).done((json) => {
             // Convert to Array
             json = Helpers.toArray(json);
 
-            // Add Data
-            db.add({
-                url: hash,
-                date: moment().format(),
-                content: JSON.stringify(Helpers.toArray(json))
-            });
+            if(json.length > 0) {
+                // Add Data
+                db.add({
+                    url: hash,
+                    date: moment().format(),
+                    content: JSON.stringify(Helpers.toArray(json))
+                });
 
-            // Resolve
-            resolve(json);
+                // Resolve
+                resolve(json);
+            } else {
+                throw new Error('Data Loading Failed');
+                // TODO: Error Handling
+            }
         });
     }
 
@@ -78,8 +83,25 @@ class DataStore {
      * @param rows
      * @param resolve
      */
-    loadData(rows, resolve) {
-        resolve(JSON.parse(rows[0].content));
+    loadData(rows, resolve, db, url) {
+        var row  = rows[0],
+            now  = moment(),
+            date = moment(row.date);
+
+        // If it’s new, just deliver it.
+        if(now.diff(date, 'hours') < 5) {
+            resolve(JSON.parse(row.content));
+        }
+        // If it’s older than 5 hours, download again
+        else {
+            console.log('have it, but downloading again');
+            // Remove
+            db.where({
+                url: row.url
+            }).remove();
+            // Download Again
+            this.fetchData(db, url, row.url, resolve);
+        }
     }
 }
 
