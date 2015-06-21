@@ -82,6 +82,8 @@ class DataStore {
      * Returns db data and resolves the promise
      * @param rows
      * @param resolve
+     * @param db
+     * @param url
      */
     loadData(rows, resolve, db, url) {
         var row  = rows[0],
@@ -94,7 +96,6 @@ class DataStore {
         }
         // If it’s older than 5 hours, download again
         else {
-            console.log('have it, but downloading again');
             // Remove
             db.where({
                 url: row.url

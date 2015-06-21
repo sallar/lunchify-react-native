@@ -163,7 +163,7 @@ class VenuesView extends Component {
                         data: venue,
                         /* Directions Button */
                         rightButton: RightButton({
-                            icon: 'map',
+                            icon: 'ios-navigate-outline',
                             onPress: this.alertDirections.bind(this, venue)
                         })
                     })

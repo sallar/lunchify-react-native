@@ -4,21 +4,22 @@
  */
 'use strict';
 
-var React = require('react-native');
-var {
-    PixelRatio,
-    Navigator,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableHighlight,
-    TouchableOpacity,
-    View,
-    Image
-} = React;
-
-var MapView = require('./Map');
-var {Variables, NavigatorStyles} = require('../utils/Styles');
+var React       = require('react-native'),
+    MapView     = require('./Map'),
+    AboutView   = require('./About'),
+    RightButton = require('./RightButton'),
+    {Variables, NavigatorStyles} = require('../utils/Styles'),
+    {
+        PixelRatio,
+        Navigator,
+        ScrollView,
+        StyleSheet,
+        Text,
+        TouchableHighlight,
+        TouchableOpacity,
+        View,
+        Image
+    } = React;
 
 var NavigationBarRouteMapper = {
 
@@ -41,8 +42,17 @@ var NavigationBarRouteMapper = {
     },
 
     RightButton: function(route, navigator, index, navState) {
-        if(typeof route.rightButton !== void 0) {
+        if(typeof route.rightButton !== "undefined") {
             return route.rightButton;
+        }
+        else if(index === 0) {
+            return RightButton({
+                icon: 'ios-lightbulb-outline',
+                onPress: () => navigator.push({
+                    title: 'About',
+                    component: AboutView
+                })
+            });
         }
         else {
             return (<View />);

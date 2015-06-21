@@ -24,6 +24,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		998577941B371D62001BB7CB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 998577931B371D62001BB7CB /* Ionicons.ttf */; };
 		999F82F01B1E33F900928094 /* VibrancyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82E81B1E33F900928094 /* VibrancyView.m */; };
 		999F82F11B1E33F900928094 /* VibrancyViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82EA1B1E33F900928094 /* VibrancyViewManager.m */; };
 		999F82F21B1E33F900928094 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F82ED1B1E33F900928094 /* BlurView.m */; };
@@ -153,6 +154,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		998577931B371D62001BB7CB /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		999F82E71B1E33F900928094 /* VibrancyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyView.h; sourceTree = "<group>"; };
 		999F82E81B1E33F900928094 /* VibrancyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrancyView.m; sourceTree = "<group>"; };
 		999F82E91B1E33F900928094 /* VibrancyViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyViewManager.h; sourceTree = "<group>"; };
@@ -253,7 +255,6 @@
 				00E356F21AD99517003FC87E /* LunchifyTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			name = LunchifyTests;
 			path = LunchifyTests;
 			sourceTree = "<group>";
 		};
@@ -389,6 +390,7 @@
 		999F830A1B1F808900928094 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				998577931B371D62001BB7CB /* Ionicons.ttf */,
 				99B094F71B27645F002A88AB /* MaterialIcons.ttf */,
 				999F830B1B1F812400928094 /* Lato-Bold.ttf */,
 				999F830C1B1F812400928094 /* Lato-Light.ttf */,
@@ -627,6 +629,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998577941B371D62001BB7CB /* Ionicons.ttf in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				999F83121B1F812400928094 /* Lato-Semibold.ttf in Resources */,
 				999F830F1B1F812400928094 /* Lato-Bold.ttf in Resources */,
