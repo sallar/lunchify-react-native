@@ -5,7 +5,7 @@
 'use strict';
 
 var React  = require('react-native'),
-    Icon   = require('MaterialIcons'),
+    Icon   = require('react-native-vector-icons/MaterialIcons'),
     {Stylesheet} = require('../utils/Styles');
 
 var {

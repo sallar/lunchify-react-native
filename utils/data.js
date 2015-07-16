@@ -59,7 +59,8 @@ class DataStore {
             return response.json();
         }).done((json) => {
             // Convert to Array
-            json = Helpers.toArray(json);
+            //console.log(json);
+            ////json = Helpers.toArray(json);
 
             if(json.length > 0) {
                 // Add Data

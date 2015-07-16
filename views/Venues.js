@@ -16,8 +16,8 @@ var React             = require('react-native'),
     VenueView         = require('./Venue'),
     MapView           = require('./Map'),
     RightButton       = require('./RightButton'),
-    Icon              = require('MaterialIcons'),
-    RCTRefreshControl = require('RCTRefreshControl'),
+    Icon              = require('react-native-vector-icons/MaterialIcons'),
+    RCTRefreshControl = require('react-refresh-control'),
     /* Styles */
     {
         Stylesheet,
@@ -61,7 +61,7 @@ class VenuesView extends Component {
     componentDidMount() {
         // Turn Geo Callback into a promise
         var geoPromiseResolve,
-            refPromise = Data.load('https://lunchify.firebaseio.com/areas/keilaniemi/venues.json'),
+            refPromise = Data.load('http://192.168.11.7:8080/api/venues'),
             geoPromise = new Promise(function(resolve) {
                 geoPromiseResolve = resolve;
             }),
@@ -100,8 +100,8 @@ class VenuesView extends Component {
                 lat: geo.coords.latitude,
                 lng: geo.coords.longitude
             }, {
-                lat: item.lat,
-                lng: item.lng
+                lat: item.location[1],
+                lng: item.location[0]
             });
         }
 
@@ -230,6 +230,7 @@ class VenuesView extends Component {
                     ref={LISTVIEW}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderVenue.bind(this)}
+                    automaticallyAdjustContentInsets={false}
                     />
             </View>
         )

@@ -6,12 +6,12 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "latest",
-    "react-native-vector-icons": "latest",
+    "react-native": "0.7.x",
+    "react-native-vector-icons": "0.6.x",
     "react-native-blur": "latest",
     "moment": "^2.10.3",
     "react-native-htmlview": "latest",
     "react-native-store": "latest",
-    "react-refresh-control": "^2.0.4"
+    "react-refresh-control": "^2.0.5"
   }
 }

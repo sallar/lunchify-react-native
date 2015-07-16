@@ -10,7 +10,7 @@
 var React   = require('react-native'),
     moment  = require('moment'),
     Helpers = require('../utils/Helpers'),
-    Icon    = require('MaterialIcons'),
+    Icon    = require('react-native-vector-icons/MaterialIcons'),
     /* Styles */
     {
         Stylesheet,
