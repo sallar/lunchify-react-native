@@ -80,15 +80,15 @@ class VenuesView extends Component {
         });
 
         // Call Geo location
-        //navigator.geolocation.getCurrentPosition(geoPromiseResolve);
-        (geoPromiseResolve)({coords: {latitude: 60.1764360, longitude: 24.8306610}});
+        navigator.geolocation.getCurrentPosition(geoPromiseResolve);
+        //(geoPromiseResolve)({coords: {latitude: 60.1764360, longitude: 24.8306610}});
 
         // ScrollView
-        //RCTRefreshControl.configure({
-        //    node: this.refs[LISTVIEWREF]
-        //}, () => {
-        //    this.recalcDistance();
-        //});
+        RCTRefreshControl.configure({
+            node: this.refs[LISTVIEWREF]
+        }, () => {
+            this.recalcDistance();
+        });
     }
 
     calcDistances(data, geo) {
@@ -132,7 +132,7 @@ class VenuesView extends Component {
     }
 
     getDate() {
-        return moment('2015-07-15').format('YYYY-MM-DD');
+        return moment('2015-07-17').format('YYYY-MM-DD');
     }
 
     toVenue(venue, view) {

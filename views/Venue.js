@@ -63,16 +63,9 @@ class VenueView extends Component {
         )
     }
 
-    render() {
-        return (
-            <View>
-                <Image
-                    source={require('image!placeholder')}
-                    resizeMode="cover"
-                    style={{
-                        width: Screen.width,
-                        height: 200
-                    }} />
+    renderList() {
+        if(this.state.rawMenu.length > 0) {
+            return (
                 <View style={Stylesheet.flex}>
                     <ListView
                         automaticallyAdjustContentInsets={false}
@@ -80,6 +73,27 @@ class VenueView extends Component {
                         renderRow={this.renderMeal.bind(this)}
                         />
                 </View>
+            );
+        } else {
+            return (
+                <View style={[Stylesheet.flex, Stylesheet.flexCenter]}>
+                    <Text style={Stylesheet.text}>This Venue is Closed Today.</Text>
+                </View>
+            );
+        }
+    }
+
+    render() {
+        return (
+            <View style={Stylesheet.flex}>
+                <Image
+                    source={require('image!placeholder')}
+                    resizeMode="cover"
+                    style={{
+                    width: Screen.width,
+                    height: 200
+                }}/>
+                {this.renderList()}
             </View>
         );
     }
