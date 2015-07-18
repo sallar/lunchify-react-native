@@ -29,16 +29,14 @@ class DataStore {
 
         // Get Data
         Store.table("jsonData").then(function(cache) {
-            var rows = cache.where({
-                    url: hash
-                }
-            ).find();
+            var rows = cache.where({url: hash}).find();
 
+            // Fetching data
             if(rows.length === 0) {
-                // Fetching data
                 _this.fetchData(cache, url, hash, resolve);
-            } else {
-                // Load from DB
+            }
+            // Load from DB
+            else {
                 _this.loadData(rows, resolve, cache, url);
             }
         });
@@ -58,24 +56,15 @@ class DataStore {
         fetch(url).then((response) => {
             return response.json();
         }).done((json) => {
-            // Convert to Array
-            //console.log(json);
-            ////json = Helpers.toArray(json);
+            // Add Data
+            db.add({
+                url: hash,
+                date: moment().format(),
+                content: JSON.stringify(json)
+            });
 
-            if(json.length > 0) {
-                // Add Data
-                db.add({
-                    url: hash,
-                    date: moment().format(),
-                    content: JSON.stringify(Helpers.toArray(json))
-                });
-
-                // Resolve
-                resolve(json);
-            } else {
-                throw new Error('Data Loading Failed');
-                // TODO: Error Handling
-            }
+            // Resolve
+            resolve(json);
         });
     }
 

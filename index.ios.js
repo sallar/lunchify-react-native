@@ -16,6 +16,9 @@ var {
     StatusBarIOS,
 } = React;
 
+/* API Location */
+global.api = 'http://lunchify.fi:8080/api';
+
 /**
  * Main App
  */

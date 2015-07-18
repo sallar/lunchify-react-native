@@ -35,7 +35,7 @@ var React             = require('react-native'),
         LinkingIOS
         } = React,
     /* Options */
-    LISTVIEW     = 'ListView',
+    LISTVIEWREF     = 'ListView',
     GPSOptions   = {
         enableHighAccuracy: false,
         timeout: 5000,
@@ -61,7 +61,7 @@ class VenuesView extends Component {
     componentDidMount() {
         // Turn Geo Callback into a promise
         var geoPromiseResolve,
-            refPromise = Data.load('http://192.168.11.7:8080/api/venues'),
+            refPromise = Data.load(api + '/venues'),
             geoPromise = new Promise(function(resolve) {
                 geoPromiseResolve = resolve;
             }),
@@ -84,11 +84,11 @@ class VenuesView extends Component {
         (geoPromiseResolve)({coords: {latitude: 60.1764360, longitude: 24.8306610}});
 
         // ScrollView
-        RCTRefreshControl.configure({
-            node: this.refs[LISTVIEW]
-        }, () => {
-            this.recalcDistance();
-        });
+        //RCTRefreshControl.configure({
+        //    node: this.refs[LISTVIEWREF]
+        //}, () => {
+        //    this.recalcDistance();
+        //});
     }
 
     calcDistances(data, geo) {
@@ -125,20 +125,18 @@ class VenuesView extends Component {
                         ),
                         lastPosition: position
                     });
-                    RCTRefreshControl.endRefreshing(_this.refs[LISTVIEW]);
+                    RCTRefreshControl.endRefreshing(_this.refs[LISTVIEWREF]);
                 }, 500);
             }
         );
     }
 
     getDate() {
-        return moment('2015-06-15').format('YYYY-MM-DD');
+        return moment('2015-07-15').format('YYYY-MM-DD');
     }
 
     toVenue(venue, view) {
-        var refUrl = "https://lunchify.firebaseio.com/areas/keilaniemi/meals/" +
-                venue.id + "/" + this.getDate() + ".json",
-            refPromise = Data.load(refUrl);
+        var refPromise = Data.load(api + '/venues/' + venue._id + '/' + this.getDate());
 
         // Start Loading
         view.setState({ isLoading: true });
@@ -152,7 +150,7 @@ class VenuesView extends Component {
                 component: VenueView,
                 data: {
                     venue: venue,
-                    menu: response
+                    menu: response.meals
                 },
                 /* Map Button */
                 rightButton: RightButton({
@@ -227,7 +225,7 @@ class VenuesView extends Component {
             <View style={Stylesheet.flex}>
                 {this.renderLoading.call(this)}
                 <ListView
-                    ref={LISTVIEW}
+                    ref={LISTVIEWREF}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderVenue.bind(this)}
                     automaticallyAdjustContentInsets={false}
